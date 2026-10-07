@@ -2,6 +2,7 @@
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainNavigation from './components/MainNavigation'
+import EventsNavigation from './components/EventsNavigation'
 import HomePage from './pages/Home';
 import EventsPage from './pages/Events';
 import EventDetailPage from './pages/EventDetail';
@@ -40,20 +41,26 @@ function App() {
         },
         {
           path: 'events',
-          element: <EventsPage />,
-        },
-        {
-          path: 'events/:id',
-          element: <EventDetailPage />,
-        },
-        {
-          path: 'events/new',
-          element: <NewEventPage />,
-        },
-        {
-          path: 'events/:id/edit',
-          element: <EditEventPage />,
-        },
+          element: <EventsNavigation />,
+          children: [
+            {
+              index: true,
+              element: <EventsPage />,
+            },
+            {
+              path: ':id',
+              element: <EventDetailPage />,
+            },
+            {
+              path: 'new',
+              element: <NewEventPage />,
+            },
+            {
+              path: ':id/edit',
+              element: <EditEventPage />,
+            },
+          ]
+        }
       ]
     },
   ])
