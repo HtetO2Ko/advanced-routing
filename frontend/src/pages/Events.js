@@ -1,17 +1,31 @@
-import EventsList from '../components/EventsList'
+import { useEffect, useState } from 'react';
+
+import EventsList from '../components/EventsList';
 
 function EventsPage() {
-  const EVENTS = [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ];
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchedEvents, setFetchedEvents] = useState();
+  const [error, setError] = useState();
 
-  return <EventsList events={EVENTS} />
+  useEffect(() => {
+    async function fetchEvents() {
+      setIsLoading(true);
+      
+      setIsLoading(false);
+    }
+
+    fetchEvents();
+  }, []);
+
+  return (
+    <>
+      <div style={{ textAlign: 'center' }}>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+      </div>
+      {!isLoading && fetchedEvents && <EventsList events={fetchedEvents} />}
+    </>
+  );
 }
 
 export default EventsPage;
