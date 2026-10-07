@@ -16,7 +16,6 @@ export async function eventsLoader() {
   if (!response.ok) {
     // ...
   } else {
-    const resData = await response.json();
-    return resData.events;
+    return response;
   }
 }
