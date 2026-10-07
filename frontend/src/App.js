@@ -1,8 +1,8 @@
 // Challenge / Exercise
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainNavigation from './components/MainNavigation'
-import EventsNavigation from './components/EventsNavigation'
+import RootLayout from "./pages/Root";
+import EventLayout from "./pages/EventLayout";
 import HomePage from './pages/Home';
 import EventsPage from './pages/Events';
 import EventDetailPage from './pages/EventDetail';
@@ -33,7 +33,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <MainNavigation />,
+      element: <RootLayout />,
       children: [
         {
           index: true,
@@ -41,7 +41,7 @@ function App() {
         },
         {
           path: 'events',
-          element: <EventsNavigation />,
+          element: <EventLayout />,
           children: [
             {
               index: true,
